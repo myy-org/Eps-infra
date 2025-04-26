@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Simple EC2 instance with default settings
+
+Resources:
+  SimpleSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow SSH access
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0  
+
+  SimpleEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      KeyName: virgina
+      ImageId: ami-084568db4383264d4  # Amazon Linux 2 AMI for us-east-1
+      SecurityGroupIds:
+        - !Ref SimpleSecurityGroup
+      Tags:
+        - Key: Name
+          Value: testing
