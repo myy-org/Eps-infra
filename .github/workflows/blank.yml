@@ -1,8 +1,8 @@
 name: Create EC2
 
 on:
- # push:
-  #  branches: [ "main" ]
+  push:
+    branches: [ "main" ]
   repository_dispatch:
     types: [deploy-infra]
 
