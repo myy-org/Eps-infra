@@ -3,7 +3,7 @@ name: Deploy Simple EC2 with CloudFormation
 on:
   push:
     branches:
-      - main
+     # - main
   repository_dispatch:
     types: [deploy-infra]
 
@@ -39,6 +39,9 @@ jobs:
           aws cloudformation describe-stacks \
             --stack-name $STACK_NAME \
             --query "Stacks[0].Outputs"
+
+      - name: Wait for 1 minute to stabilize EC2
+        run: sleep 60
 
       - name: Trigger Application Repo after Infra
         uses: peter-evans/repository-dispatch@v2
