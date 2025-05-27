@@ -5,7 +5,7 @@ on:
 
 jobs:
   trigger-frontend-build:
-    uses: ./.github/workflows/reusable.yml
+    uses: ./.github/workflows/reusable.yml@main
     with:
       frontend_repo: MgsParthiban/Front-end-repo
       branch: main
