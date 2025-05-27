@@ -6,7 +6,14 @@ on:
       frontend_repo:
         required: true
         type: string
-      branch:
+      front_branch:
+        required: true
+        type: string
+        
+      backend_repo:
+        required: true
+        type: string
+      back_branch:
         required: true
         type: string
     secrets:
@@ -21,27 +28,28 @@ jobs:
       - name: Checkout Frontend Repo
         uses: actions/checkout@v4
         with:
-          repository: ${{ inputs.application_repo }}
-          ref: ${{ inputs.branch }}
+          repository: ${{ inputs.backend_repo }}
+          ref: ${{ inputs.back_branch }}
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           path: application-repo
+          
       - name: List files
         run: ls -R
-        working-directory: Front-end-repo
+        working-directory: application-repo
 
       - name: Install Dependencies
         run: npm install
-        working-directory: Front-end-repo
+        working-directory: application-repo
 
-      - name: Build Frontend
+      - name: Build backend
         run: npm run build
-        working-directory: Front-end-repo
+        working-directory: application-repo
 
       - name: Checkout Frontend Repo
         uses: actions/checkout@v4
         with:
           repository: ${{ inputs.frontend_repo }}
-          ref: ${{ inputs.branch }}
+          ref: ${{ inputs.front_branch }}
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
           path: Front-end-repo
 
