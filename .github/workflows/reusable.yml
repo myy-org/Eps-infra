@@ -1,0 +1,39 @@
+name: Reusable Build Frontend
+
+on:
+  workflow_call:
+    inputs:
+      frontend_repo:
+        required: true
+        type: string
+      branch:
+        required: true
+        type: string
+    secrets:
+      FRONTEND_REPO_TOKEN:
+        required: true
+
+jobs:
+  build-frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Frontend Repo
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ inputs.frontend_repo }}
+          ref: ${{ inputs.branch }}
+          token: ${{ secrets.FRONTEND_REPO_TOKEN }}
+          path: frontend
+
+      - name: List files
+        run: ls -R
+        working-directory: frontend
+
+      - name: Install Dependencies
+        run: npm install
+        working-directory: frontend
+
+      - name: Build Frontend
+        run: npm run build
+        working-directory: frontend
