@@ -10,7 +10,7 @@ on:
         required: true
         type: string
     secrets:
-     REPO_ACCESS_TOKEN:
+      REPO_ACCESS_TOKEN:
         required: true
 
 jobs:
@@ -24,19 +24,16 @@ jobs:
           repository: ${{ inputs.frontend_repo }}
           ref: ${{ inputs.branch }}
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
-          path: 'Front-end-repo'
-
+          path: Front-end-repo
 
       - name: List files
         run: ls -R
-        working-directory: frontend
+        working-directory: Front-end-repo
 
       - name: Install Dependencies
         run: npm install
         working-directory: Front-end-repo
 
-
       - name: Build Frontend
         run: npm run build
         working-directory: Front-end-repo
-
