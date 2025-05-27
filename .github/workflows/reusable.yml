@@ -10,7 +10,7 @@ on:
         required: true
         type: string
     secrets:
-      FRONTEND_REPO_TOKEN:
+     REPO_ACCESS_TOKEN:
         required: true
 
 jobs:
@@ -23,7 +23,7 @@ jobs:
         with:
           repository: ${{ inputs.frontend_repo }}
           ref: ${{ inputs.branch }}
-          token: ${{ secrets.FRONTEND_REPO_TOKEN }}
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
           path: frontend
 
       - name: List files
