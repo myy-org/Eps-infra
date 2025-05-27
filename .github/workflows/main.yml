@@ -1,0 +1,13 @@
+name: Main Infra Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  trigger-frontend-build:
+    uses: ./.github/workflows/reusable.yml
+    with:
+      frontend_repo: your-username/frontend-app
+      branch: main
+    secrets:
+      FRONTEND_REPO_TOKEN: ${{ secrets.FRONTEND_REPO_TOKEN }}
