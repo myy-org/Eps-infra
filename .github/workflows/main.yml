@@ -10,4 +10,4 @@ jobs:
       frontend_repo: MgsParthiban/Front-end-repo
       branch: main
     secrets:
-      FRONTEND_REPO_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
+      REPO_ACCESS_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
