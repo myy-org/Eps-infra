@@ -10,4 +10,4 @@ jobs:
       frontend_repo: your-username/frontend-app
       branch: main
     secrets:
-      FRONTEND_REPO_TOKEN: ${{ secrets.FRONTEND_REPO_TOKEN }}
+      FRONTEND_REPO_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
