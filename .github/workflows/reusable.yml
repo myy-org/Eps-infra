@@ -16,9 +16,9 @@ on:
       back_branch:
         required: true
         type: string
-    secrets:
-      REPO_ACCESS_TOKEN:
-        required: true
+    #secrets:
+     # REPO_ACCESS_TOKEN:
+      #  required: true
 
 jobs:
   build-frontend:
@@ -30,7 +30,7 @@ jobs:
         with:
           repository: ${{ inputs.backend_repo }}
           ref: ${{ inputs.back_branch }}
-          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          #token: ${{ secrets.REPO_ACCESS_TOKEN }}
           path: application-repo
           
       - name: List files
@@ -50,7 +50,7 @@ jobs:
         with:
           repository: ${{ inputs.frontend_repo }}
           ref: ${{ inputs.front_branch }}
-          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          #token: ${{ secrets.REPO_ACCESS_TOKEN }}
           path: Front-end-repo
 
       - name: List files
