@@ -24,7 +24,8 @@ jobs:
           repository: ${{ inputs.frontend_repo }}
           ref: ${{ inputs.branch }}
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
-          path: frontend
+          path: 'Front-end-repo'
+
 
       - name: List files
         run: ls -R
@@ -32,8 +33,10 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
-        working-directory: frontend
+        working-directory: Front-end-repo
+
 
       - name: Build Frontend
         run: npm run build
-        working-directory: frontend
+        working-directory: Front-end-repo
+
