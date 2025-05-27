@@ -8,6 +8,9 @@ jobs:
     uses: ./.github/workflows/reusable.yml
     with:
       frontend_repo: myy-org/Front-end-repo
-      branch: main
+      front_branch: main
+      backend_repo: myy-org/application-repo
+      back_branch: dev
+      
     secrets:
       REPO_ACCESS_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
