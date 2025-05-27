@@ -1,11 +1,11 @@
 name: Deploy Simple EC2 with CloudFormation
 
 on:
-  push:
-    branches:
+    #push:
+     # branches:
      # - main
-  repository_dispatch:
-    types: [deploy-infra]
+   # repository_dispatch:
+     # types: [deploy-infra]
 
 jobs:
   deploy:
