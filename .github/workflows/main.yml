@@ -7,7 +7,7 @@ jobs:
   trigger-frontend-build:
     uses: ./.github/workflows/reusable.yml
     with:
-      frontend_repo: MgsParthiban/Front-end-repo
+      frontend_repo: myy-org/Front-end-repo
       branch: main
     secrets:
       REPO_ACCESS_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
