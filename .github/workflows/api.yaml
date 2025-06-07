@@ -28,12 +28,12 @@ jobs:
 
       - name: Validate CloudFormation template
         run: |
-          aws cloudformation validate-template --template-body file://apigateway.yml
+          aws cloudformation validate-template --template-body file://apigateway2.yml
 
       - name: Deploy CloudFormation stack
         run: |
           aws cloudformation deploy \
-            --template-file apigateway.yml \
+            --template-file apigateway2.yml \
             --stack-name frontend-api-stack \
             --capabilities CAPABILITY_NAMED_IAM \
             --parameter-overrides \
