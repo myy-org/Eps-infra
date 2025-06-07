@@ -36,7 +36,9 @@ jobs:
             --template-file apigateway.yml \
             --stack-name frontend-api-stack \
             --capabilities CAPABILITY_NAMED_IAM \
-            --parameter-overrides S3BucketName=your-bucket-name StageName=prod
+            --parameter-overrides \
+              S3BucketName={{ github.event.inputs.S3BucketName}} \
+              StageName={{ github.event.inputs.StageName}
 
       - name: Show API endpoint output
         run: |
