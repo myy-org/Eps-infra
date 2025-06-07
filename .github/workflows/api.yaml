@@ -1,0 +1,45 @@
+name: Deploy API Gateway CloudFormation
+
+on:
+  workflow_dispatch:
+    inputs:
+      S3BucketName:
+        description: 'Name of the S3 bucket containing frontend files'
+        required: true
+        default: 'my-private-site'
+      StageName:
+        description: 'Deployment stage name for the API (e.g., dev, prod, staging)'
+        required: false
+        
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION || 'us-east-1' }}
+
+      - name: Validate CloudFormation template
+        run: |
+          aws cloudformation validate-template --template-body file://apigateway.yml
+
+      - name: Deploy CloudFormation stack
+        run: |
+          aws cloudformation deploy \
+            --template-file apigateway.yml \
+            --stack-name frontend-api-stack \
+            --capabilities CAPABILITY_NAMED_IAM \
+            --parameter-overrides S3BucketName=your-bucket-name StageName=prod
+
+      - name: Show API endpoint output
+        run: |
+          aws cloudformation describe-stacks \
+            --stack-name frontend-api-stack \
+            --query "Stacks[0].Outputs"
